@@ -97,8 +97,7 @@ class PolicyIteration:
             print("==========step:{}==========".format(step))
             print(self.env.render())
             print("state: {}, action: {}, reward: {}".format(next_obs, action, reward))
-            print("===========================".format(step))
-
+            
             obs = next_obs
             step += 1
             
