@@ -8,9 +8,9 @@
 -  과제 내용
 
     1. Policy Iteration Class 구현
-    2. 구현한 클래스를 이용한 policy 학습 및 결과 출력
-    3. Policy Evaluation과 Policy Improvement 반복 횟수에 따른 결과 비교
-    4. Delta와 Policy Stable 조건 추가 구현 (보너스 문제)
+    2. 구현한 클래스를 이용한 policy 학습 및 결과 출력(q2.py)
+    3. Policy Evaluation과 Policy Improvement 반복 횟수에 따른 결과 비교(q3.py)
+    4. Delta와 Policy Stable 조건 추가 구현 (q4.py)
 
 -  상세 요구 사항
 
@@ -49,7 +49,7 @@
 - `def policy_improvement()` : 계산된 가치함수를 바탕으로 탐욕 정책을 수행하여 정책을 업데이트 한다.
     - 모든 행동에 대해 [보상 + (감가율 * 다음 상태 가치함수)] 계산한다.
     - 값이 최대가 되는 행동들에 대해 동일한 확률을 적용하고 해당하지 않은 행동을 0.0으로 한다.
-    
+
 - `def print_value(s)` : 주어진 행동 s에 대한 가치 함수 값을 출력한다.
 - `def get_policy(s)` : 주어진 행동 s에 대한 정책을 반환한다.
 - `def get_value(s)` : 주어진 행동 s에 대한 가치 함수값을 반환한다.
