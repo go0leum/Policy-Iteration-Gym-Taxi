@@ -1,9 +1,6 @@
 import gymnasium as gym
 from policyiteration import PolicyIteration
 
-import numpy as np
-import time
-
 # environment 생성
 env = gym.make('Taxi-v3', render_mode="ansi")
 

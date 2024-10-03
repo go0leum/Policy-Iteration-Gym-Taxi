@@ -14,7 +14,7 @@ class PolicyIteration:
         # 감가율
         self.discount_factor = discount_factor
 
-    def policy_evaluation(self, iter_num):
+    def policy_evaluation(self, iter_num, print_value=False):
         # 새로운 가치함수 저장을 위해 초기화
         new_value = np.copy(self.value)
 
@@ -30,6 +30,9 @@ class PolicyIteration:
             
             # iter 마다 가치함수 업데이트
             self.value = new_value
+
+            if print_value:
+                self.print_value()
         
     def policy_improvement(self):
         # 새로운 정책 저장을 위해 초기화
