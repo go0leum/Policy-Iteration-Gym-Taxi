@@ -24,7 +24,7 @@ class PolicyIteration:
                 v = 0.0
                 for a in range(self.env.action_space.n):
                     (probaility, s_next, reward, terminate) = self.env.unwrapped.P[s][a][0]
-                    v += self.get_policy(s)[a]*(reward+self.discount_factor*probaility*self.get_value(s_next))
+                    v += self.get_policy(s)[a]*(reward+self.discount_factor*self.get_value(s_next))
                 
                 new_value[s] = v
             
@@ -67,9 +67,9 @@ class PolicyIteration:
         # 정책 업데이트 
         self.policy = new_policy
     
-    # 특정 상태에 대한 가치함수 출력
-    def print_value(self, s):
-        print(self.value[s])
+    # 현재 가치함수 출력
+    def print_value(self):
+        print(self.value)
     
     # 특정 상태에 대한 정책 반환
     def get_policy(self, state):
