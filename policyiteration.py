@@ -15,7 +15,7 @@ class PolicyIteration:
         self.discount_factor = discount_factor
 
     def policy_evaluation(self, iter_num, print_value=False):
-        # 새로운 가치함수 저장을 위해 초기화
+        # 새로운 가치함수 저장을 위해 copy
         new_value = np.copy(self.value)
 
         for i in range(iter_num):
@@ -35,7 +35,7 @@ class PolicyIteration:
                 self.print_value()
         
     def policy_improvement(self):
-        # 새로운 정책 저장을 위해 초기화
+        # 새로운 정책 저장을 위해 copy
         new_policy = np.copy(self.policy)
 
         # 모든 상태에 대해 greedy 정책 적용
