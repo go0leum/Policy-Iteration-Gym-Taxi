@@ -57,3 +57,46 @@
     - `state`: 현재 상태
     - `reward` : 행동에 따른 보상
     - `action` : 수행한 행동
+
+## Result
+
+- q2.py
+    
+    policy iteration을 `N`번 수행하고 결과를 출력한다.
+    
+    - `N=5`, policy evaluation의 `iter_num=100` 으로 설정한 결과, 총 13 step을 진행하는 결과를 도출했다.
+    - `print_value` 결과 값이 크게 변하지 않는 걸 보아 값이 거의 수렴했다는 것을 알 수 있다.
+
+- q3.py
+    
+    policy iteration에서 policy evaluation 1번, policy improvement 1번을 10번 반복하는 것(1)과 policy evaluation 10번, policy improvement 1번하는 것(2)의 결과를 비교한다.
+    
+    - 첫번째 경우 학습이 잘 진행되어 좋은 결과를 나타내었다. 반면에 두번째 경우는 10번 이상 반복해도 좋은 결과를 얻을 수 없었다.
+    - 첫번째의 경우는 가치함수가 업데이트된 후, 정책이 업데이트되고 정책을 바탕으로 가치함수를 더 나은 방향으로 업데이트한다. 반면에 두번째의 경우 정책은 마지막에 한번만 업데이트되어 정책이 가치함수의 업데이트에 영향을 미치지 못해 학습이 제대로 진행되지 않는다.
+
+- q4.py & policyiteration_q4.py
+    
+    Delta (theta=0.00001) 와 Policy Stable 조건을 추가한다.
+
+    - `Delta` : 업데이트 이전 가치함수의 값과 이후의 가치함수의 차이를 계산하고 그 값이 지정한 theta값보다 작아지면 policy evaluation 과정을 종료한다.
+        - 업데이트 이후 가치함수 값 간의 차이가 적을 수록 수렴되었다는 결론을 얻을 수 있다.`Delta` 를 지정함으로써 수렴되었다고 판단한 조건을 설정할 수 있다.
+    - `policy_stable` : policy improvement을 진행하기 전과 이후의 정책을 비교하여 변화가 없다면 정책이 안정되었다고 판단하고 더이상 policy iteration과정을 진행하지 않는다.
+        - policy가 더이상 변하지 않는다면 충분히 학습되었다는 것을 의미하므로 불필요한 policy iteration을 하는 것을 방지할 수있다.
+    - policy evaluation과 policy improvement가 10번 반복되었다. 가치함수가 수렴하였고 정책이 적절히 학습되어 좋은 결과를 얻을 수 있었다.
+
+- q5.py
+
+    학습에 적절한 Delta 값에 대한 의문이 생겨 Delta 값의 변화에 따른 Iteration 반복횟수 및 evaluation 반복횟수 변화 그리고 학습 결과를 비교해보는 실험을 추가로 진행했다.
+
+    - 결과적으로 theta가 작아질 수록 iteration 반복횟수도 줄어드는 것을 알 수 있었다.
+    - 더불어 policy evaluation의 반복 횟수 k는 평균적으로 감소하는 것을 알 수 있었다.
+    - theta를 실험한 범위 내에서 학습 결과는 모두 괜찮았다. 이는 policy stable을 적용한 영향이 큰 것 같다.
+
+    | theta | Iteration | average K(policy evaluation 평균 반복횟수) |
+    | --- | --- | --- |
+    | 1 | 16 | 10.875 |
+    | 0.1 | 14 | 25.571 |
+    | 0.01 | 13 | 39.07 |
+    | 0.001 | 12 | 68.0 |
+    | 0.0001 | 13 | 83.385 |
+    | 0.00001 | 10 | 132.8 |
